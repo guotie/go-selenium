@@ -1,4 +1,5 @@
-package selenium // import "sourcegraph.com/sourcegraph/go-selenium"
+package selenium
+
 import "context"
 
 import "io"
