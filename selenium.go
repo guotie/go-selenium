@@ -281,6 +281,9 @@ type WebElement interface {
 	/* Move mouse to relative coordinates */
 	MoveTo(xOffset, yOffset int) error
 
+	// screenshot
+	ScreenshotElement() ([]byte, error)
+
 	// Finding
 
 	/* Find children, return one element. */

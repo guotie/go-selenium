@@ -743,6 +743,19 @@ func (elem *remoteWE) MoveTo(xOffset, yOffset int) error {
 	return elem.parent.voidCommand("/session/%s/moveto", params)
 }
 
+func (elem *remoteWE) ScreenshotElement() ([]byte, error) {
+	data, err := elem.parent.stringCommand("/session/%s/element/" + elem.id + "/screenshot")
+	if err != nil {
+		return nil, err
+	}
+
+	return []byte(data), nil
+	// Selenium returns base64 encoded image
+	//buf := []byte(data)
+	//decoder := base64.NewDecoder(base64.StdEncoding, bytes.NewBuffer(buf))
+	//return decoder, nil
+}
+
 func (elem *remoteWE) FindElement(by, value string) (WebElement, error) {
 	res, err := elem.parent.find(by, value, "", fmt.Sprintf("/session/%%s/element/%s/element", elem.id))
 	if err != nil {
